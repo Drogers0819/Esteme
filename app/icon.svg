@@ -1,0 +1,13 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Esteme">
+  <!-- Slate rounded square, echoing the site wordmark -->
+  <rect width="64" height="64" rx="14" fill="#1C2B3A"/>
+  <!-- Geometric serif "E" in warm white -->
+  <g fill="#FAFAF8">
+    <rect x="19" y="16" width="9" height="32" rx="1"/>
+    <rect x="19" y="16" width="26" height="8" rx="1"/>
+    <rect x="19" y="28" width="21" height="7" rx="1"/>
+    <rect x="19" y="40" width="26" height="8" rx="1"/>
+  </g>
+  <!-- Terracotta accent dot — the "." in Esteme. -->
+  <circle cx="50" cy="44" r="4.5" fill="#C4602A"/>
+</svg>
