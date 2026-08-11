@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-warmwhite text-slate font-sans antialiased;
+  }
+
+  /* Headings default to the serif display face. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif text-slate;
+    text-wrap: balance;
+  }
+
+  /* Visible, consistent focus ring for keyboard users. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-terracotta ring-offset-2 ring-offset-warmwhite;
+  }
+
+  /* Better default paragraph readability. */
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  /* Constrained content column. */
+  .container-content {
+    @apply mx-auto w-full max-w-content px-6 sm:px-8;
+  }
+
+  /* Body-copy column tuned to ~65-75 characters per line. */
+  .prose-measure {
+    @apply max-w-prose;
+  }
+
+  /* Small uppercase eyebrow label in the accent colour. */
+  .eyebrow {
+    @apply font-sans text-xs font-semibold uppercase tracking-[0.14em] text-terracotta;
+  }
+}
+
+/* Skip-to-content link — visually hidden until focused. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  @apply rounded-md bg-slate px-4 py-2 text-sm font-medium text-warmwhite;
+}
