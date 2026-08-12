@@ -76,6 +76,30 @@
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Reveal animation (pure CSS, no JavaScript)
+   Content is visible by default; the fade-in is an enhancement only. It runs
+   only when the user has no reduced-motion preference, so it can never leave
+   content hidden. Fires on load rather than on scroll — reliable on every
+   device, including a hard mobile page load.
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes reveal-fade-rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .reveal {
+    animation: reveal-fade-rise 0.5s ease-out both;
+  }
+}
+
 /* Skip-to-content link — visually hidden until focused. */
 .skip-link {
   position: absolute;

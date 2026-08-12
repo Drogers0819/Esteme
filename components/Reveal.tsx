@@ -1,7 +1,4 @@
-"use client";
-
-import { motion, useReducedMotion, useInView } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -12,47 +9,28 @@ type RevealProps = {
 };
 
 /**
- * Subtle entrance animation: fade + 10px rise, ~300ms, once when the element
- * enters the viewport. Honours prefers-reduced-motion by rendering with no
- * motion at all.
+ * Subtle entrance animation: fade + 10px rise on load, driven entirely by CSS
+ * (see `.reveal` in globals.css).
  *
- * Uses the `useInView` hook (state-driven) rather than the `whileInView`
- * prop. `whileInView` can miss its trigger on a hard mobile page load for
- * content already on-screen at load — leaving those sections stuck invisible
- * until a client-side navigation re-mounts them. `useInView` sets up its
- * IntersectionObserver in an effect after mount, so above-the-fold content
- * reliably animates in on first load.
+ * Deliberately NOT JavaScript-driven. Content is server-rendered and visible
+ * by default; the CSS animation is a pure enhancement. If scripts fail, the
+ * IntersectionObserver misbehaves, or prefers-reduced-motion is set, the
+ * content simply shows — it can never be left stuck invisible. This replaces
+ * an earlier Framer Motion approach whose viewport observer could miss its
+ * trigger on a hard mobile load, leaving sections blank.
  */
 export function Reveal({
   children,
-  className,
+  className = "",
   delay = 0,
-  as = "div",
+  as: Tag = "div",
 }: RevealProps) {
-  const reduceMotion = useReducedMotion();
-  const ref = useRef<HTMLElement>(null);
-  // once: true — animate a single time and stay put.
-  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
-  const MotionTag = motion[as];
-
-  if (reduceMotion) {
-    const Tag = as;
-    return <Tag className={className}>{children}</Tag>;
-  }
+  const style: CSSProperties | undefined =
+    delay > 0 ? { animationDelay: `${delay}s` } : undefined;
 
   return (
-    <MotionTag
-      // `as` is a union of tags, so Framer types the ref as an impossible
-      // intersection of element refs. The underlying node is always an
-      // HTMLElement, so cast through to satisfy the type checker.
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ref={ref as any}
-      className={className}
-      initial={{ opacity: 0, y: 10 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-      transition={{ duration: 0.3, ease: "easeOut", delay }}
-    >
+    <Tag className={`reveal ${className}`.trim()} style={style}>
       {children}
-    </MotionTag>
+    </Tag>
   );
 }
