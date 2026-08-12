@@ -202,7 +202,7 @@ export default function HomePage() {
           </p>
         </Reveal>
 
-        <ol className="mt-14 grid gap-px overflow-hidden rounded-lg border border-stone-border bg-stone-border sm:grid-cols-2 lg:grid-cols-5">
+        <ol className="mt-14 grid gap-px overflow-hidden rounded-lg border border-stone-border bg-stone-border lg:grid-cols-5">
           {rposComponents.map((c, i) => (
             <Reveal
               key={c.n}
@@ -353,12 +353,12 @@ export default function HomePage() {
               key={step.n}
               as="li"
               delay={i * 0.04}
-              className="flex flex-col gap-2 bg-warmwhite p-6 sm:flex-row sm:items-baseline sm:gap-8"
+              className="flex flex-col gap-2 bg-warmwhite p-6 sm:p-7 md:flex-row md:items-baseline md:gap-8"
             >
-              <span className="font-serif text-2xl text-terracotta sm:w-16 sm:shrink-0">
+              <span className="font-serif text-2xl text-terracotta md:w-14 md:shrink-0 lg:w-16">
                 {step.n}
               </span>
-              <h3 className="font-sans text-lg font-semibold text-slate sm:w-48 sm:shrink-0">
+              <h3 className="font-sans text-lg font-semibold text-slate md:w-40 md:shrink-0 lg:w-48">
                 {step.title}
               </h3>
               <p className="text-base leading-relaxed text-slate-mid">

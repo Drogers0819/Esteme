@@ -142,7 +142,7 @@ export default function RposPage() {
                 </span>
                 <h3 className="font-serif text-2xl text-slate">{c.title}</h3>
               </div>
-              <dl className="grid gap-5 sm:grid-cols-3">
+              <dl className="grid gap-5 lg:grid-cols-3">
                 <div>
                   <dt className="eyebrow">What it is</dt>
                   <dd className="mt-2 text-sm leading-relaxed text-slate-mid">

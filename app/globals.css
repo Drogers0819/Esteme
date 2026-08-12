@@ -22,6 +22,21 @@
 
   body {
     @apply bg-warmwhite text-slate font-sans antialiased;
+    /* Guarantee no horizontal scrollbar at any width. `clip` (not `hidden`)
+       avoids creating a scroll container, so the sticky header still works. */
+    overflow-x: clip;
+    /* Long words / emails / URLs wrap instead of forcing horizontal overflow. */
+    overflow-wrap: break-word;
+  }
+
+  /* Media never overflows its container on small screens. */
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+  iframe {
+    max-width: 100%;
   }
 
   /* Headings default to the serif display face. */
